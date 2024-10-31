@@ -75,6 +75,8 @@ for i in {3..1}; do
     sleep 1
 done
 
+clear
+
 # Reinicializa o dispositivo
 if su -c "reboot"; then
     echo "Reinicialização iniciada."
