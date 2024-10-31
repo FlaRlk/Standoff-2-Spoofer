@@ -9,6 +9,8 @@ else
     exit 1  # Encerra se essa etapa falhar
 fi
 
+clear
+
 # Solicita permissão de armazenamento
 if termux-setup-storage; then
     echo "Permissões de armazenamento concedidas."
@@ -21,6 +23,7 @@ sleep 2
 clear
 
 # Prossegue com o script
+echo -e "\033[95mCódigo Ajustado pelo fla\033[0m"
 echo "Começando em 10 segundos..."
 sleep 10
 
