@@ -16,7 +16,7 @@ fi
 
 clear
 
-# Prossegue com o script
+# Prossegue com o spoofer
 echo -e "\033[95mCódigo Ajustado pelo fla\033[0m"
 echo -e "\033[32mComeçando em 15 segundos...\033[0m"
 
