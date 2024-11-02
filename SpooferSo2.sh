@@ -19,13 +19,13 @@ else
     echo "Erro ao configurar permissões de armazenamento." >&2
     exit 1  # Encerra o script se essa etapa falhar
 fi
-sleep 2
+sleep 20
 clear
 
 # Prossegue com o script
 echo -e "\033[95mCódigo Ajustado pelo fla\033[0m"
 echo "Começando em 10 segundos..."
-sleep 10
+sleep 15
 
 # Gera um novo UUID para o android_id
 UUID=$(cat /proc/sys/kernel/random/uuid)
@@ -45,8 +45,8 @@ else
 fi
 
 # Contagem
-echo "Espere 5 segundos"
-for i in {5..1}; do
+echo "Espere 15 segundos"
+for i in {15..1}; do
     echo "$i"
     sleep 1
 done
@@ -69,17 +69,28 @@ else
 fi
 
 # Reinicialização com contagem regressiva
-echo "Reiniciando em..."
-for i in {3..1}; do
-    echo "$i"
-    sleep 1
-done
+echo "Deseja reiniciar o dispositivo? (Sim/Não)"
+read -r resposta
 
-clear
+# Converte a resposta para minúscula para facilitar a verificação
+resposta=$(echo "$resposta" | tr '[:upper:]' '[:lower:]')
 
-# Reinicializa o dispositivo
-if su -c "reboot"; then
-    echo "Reinicialização iniciada."
+if [ "$resposta" = "sim" ]; then
+    echo "Reiniciando em..."
+    for i in {10..1}; do
+        echo "$i"
+        sleep 1
+    done
+    clear
+
+    # Reinicializa o dispositivo
+    if su -c "reboot"; then
+        echo "Reinicialização iniciada."
+    else
+        echo "Erro ao reiniciar o dispositivo, talvez você não possui Root." >&2
+    fi
+elif [ "$resposta" = "não" ] || [ "$resposta" = "nao" ]; then
+    echo "O dispositivo não será reiniciado. Script finalizado."
 else
-    echo "Erro ao reiniciar o dispositivo, talvez você não possui Root." >&2
+    echo "Resposta inválida. Digite 'Sim' ou 'Não'."
 fi
