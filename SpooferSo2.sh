@@ -12,14 +12,21 @@ fi
 clear
 
 # Solicita permissão de armazenamento
-if termux-setup-storage; then
+echo "Solicitando permissão de armazenamento..."
+termux-setup-storage
+
+# Verifica se a permissão foi concedida
+if [ -d "/storage/emulated/0" ]; then
     echo "Permissões de armazenamento concedidas."
     echo "Armazenamento ativado. Continuando com o script principal..."
 else
-    echo "Erro ao configurar permissões de armazenamento." >&2
-    exit 1  # Encerra o script se essa etapa falhar
+    echo "Permissão de armazenamento não concedida."
+    echo "O script não pode continuar sem acesso ao armazenamento. Por favor, conceda permissão e execute novamente." >&2
+    exit 1  # Encerra o script se a permissão não for concedida
 fi
+
 sleep 20
+
 clear
 
 # Prossegue com o script
