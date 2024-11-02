@@ -11,33 +11,10 @@ fi
 
 clear
 
-# Solicita permissão de armazenamento
-echo "Solicitando permissão de armazenamento..."
-termux-setup-storage
-
-# Verifica se a permissão foi concedida com um tempo limite
-tempo_espera=0
-while [ ! -d "/storage/emulated/0" ]; do
-    sleep 1
-    tempo_espera=$((tempo_espera + 1))
-
-    # Tempo limite de 30 segundos para conceder a permissão
-    if [ "$tempo_espera" -ge 30 ]; then
-        echo "Permissão de armazenamento não concedida a tempo."
-        echo "O script não pode continuar sem acesso ao armazenamento. Por favor, conceda permissão e execute novamente." >&2
-        exit 1  # Encerra o script se a permissão não for concedida a tempo
-    fi
-done
-
-echo "Permissões de armazenamento concedidas."
-echo "Armazenamento ativado. Continuando com o script principal..."
-
-
-clear
-
 # Prossegue com o script
 echo -e "\033[95mCódigo Ajustado pelo fla\033[0m"
-echo "Começando em 10 segundos..."
+echo -e "\033[32mComeçando em 15 segundos...\033[0m"
+
 sleep 15
 
 # Gera um novo UUID para o android_id
