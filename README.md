@@ -1,6 +1,6 @@
 # Spoofer para Standoff 2
 
-Este script foi criado para facilitar o processo de remoção do banimento no Standoff 2, ajudando todos para economizar tempo.
+Este Spoofer foi criado para facilitar a vida de quem tomou banimento UID do Standoff 2, economizando nosso tempo.
 
 ## Pré-requisitos
 - **Termux** instalado no Android
