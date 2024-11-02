@@ -1,12 +1,17 @@
 echo -e "\033[95mCódigo Ajustado pelo fla\033[0m"
-echo "Configurando o Termux..."
+echo -e "\033[32mAtualizando pacotes e instalando dependências...\033[0m"
 
-# Atualiza pacotes e instala curl
-if pkg update -y && pkg install curl -y; then
-    echo "Pacotes atualizados e curl instalado com sucesso."
+# Verifica se o curl está instalado
+if ! command -v curl &> /dev/null; then
+    # Atualiza pacotes e instala curl
+    if pkg update -y && pkg install curl -y; then
+        echo "Pacotes atualizados e curl instalado com sucesso."
+    else
+        echo "Erro ao atualizar pacotes ou instalar curl." >&2
+        exit 1  # Encerra se essa etapa falhar
+    fi
 else
-    echo "Erro ao atualizar pacotes ou instalar curl." >&2
-    exit 1  # Encerra se essa etapa falhar
+    echo "O curl já está instalado."
 fi
 
 clear
@@ -35,8 +40,8 @@ else
 fi
 
 # Contagem
-echo "Espere 15 segundos"
-for i in {15..1}; do
+echo "Espere 10 segundos"
+for i in {10..1}; do
     echo "$i"
     sleep 1
 done
@@ -59,7 +64,7 @@ else
 fi
 
 # Reinicialização com contagem regressiva
-echo "Deseja reiniciar o dispositivo? (Sim/Não)"
+echo -e "\033[33mDeseja reiniciar o dispositivo? (Sim/Não)\033[0m"
 read -r resposta
 
 # Converte a resposta para minúscula para facilitar a verificação
