@@ -15,17 +15,23 @@ clear
 echo "Solicitando permissão de armazenamento..."
 termux-setup-storage
 
-# Verifica se a permissão foi concedida
-if [ -d "/storage/emulated/0" ]; then
-    echo "Permissões de armazenamento concedidas."
-    echo "Armazenamento ativado. Continuando com o script principal..."
-else
-    echo "Permissão de armazenamento não concedida."
-    echo "O script não pode continuar sem acesso ao armazenamento. Por favor, conceda permissão e execute novamente." >&2
-    exit 1  # Encerra o script se a permissão não for concedida
-fi
+# Verifica se a permissão foi concedida com um tempo limite
+tempo_espera=0
+while [ ! -d "/storage/emulated/0" ]; do
+    sleep 1
+    tempo_espera=$((tempo_espera + 1))
 
-sleep 20
+    # Tempo limite de 30 segundos para conceder a permissão
+    if [ "$tempo_espera" -ge 30 ]; then
+        echo "Permissão de armazenamento não concedida a tempo."
+        echo "O script não pode continuar sem acesso ao armazenamento. Por favor, conceda permissão e execute novamente." >&2
+        exit 1  # Encerra o script se a permissão não for concedida a tempo
+    fi
+done
+
+echo "Permissões de armazenamento concedidas."
+echo "Armazenamento ativado. Continuando com o script principal..."
+
 
 clear
 
