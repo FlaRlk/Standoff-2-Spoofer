@@ -5,7 +5,6 @@ Este script foi criado para facilitar o processo de remoção do banimento no St
 ## Pré-requisitos
 - **Termux** instalado no Android
 - **Permissões de root**
-- **Acesso ao armazenamento interno** (`termux-setup-storage` será solicitado)
 
 ## Como Usar
 ### Passo 1: Instale o Termux
